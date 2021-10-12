@@ -1,3 +1,19 @@
-const socket = io("http://localhost:3000");
+const express = require("express");
+const { createServer } = require("http");
+const { Server } = require("socket.io");
 
-socket.on("connection");
+const app = express();
+app.use(express.static("public"));
+const httpServer = createServer(app);
+const io = new Server(httpServer, {
+  cors: { origin: "*" },
+});
+
+io.on("connection", (socket) => {
+  console.log(socket.id);
+});
+
+const PORT = process.env.PORT || 3000;
+httpServer.listen(PORT, () => {
+  console.log(`Listening at port ${PORT}`);
+});
