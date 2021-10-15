@@ -3,8 +3,6 @@ function setup() {
   background(0);
 }
 
-
-void loop(){
-
-  
+function loop() {
+  background(0);
 }
